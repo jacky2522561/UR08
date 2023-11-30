@@ -3,11 +3,17 @@ import { changeCar, changeCost } from '../store';
 import { addCar } from '../store';
 const CarForm = () => {
     const dispatch = useDispatch();
-    const { name, cost } = useSelector((state) => {
-        return {
-            name: state.form.name,
-            cost: state.form.cost
-        }
+    // const { name, cost } = useSelector((state) => {
+    //     return {
+    //         name: state.form.name,
+    //         cost: state.form.cost
+    //     }
+    // });
+    const name = useSelector((state) =>{
+        return state.form.name;
+    });
+    const cost = useSelector((state) =>{
+        return state.form.cost;
     });
     const handleNameChange = (e) => {
         dispatch(changeCar(e.target.value));
@@ -21,9 +27,7 @@ const CarForm = () => {
         dispatch(addCar({
             name,
             cost
-        }))
-        dispatch(changeCar(''));
-        dispatch(changeCost(0));
+        }));
     }
     return (
         <div className="car-form panel">
